@@ -4,16 +4,34 @@ import os
 from flask import Flask
 from flask_security import Security, SQLAlchemySessionUserDatastore
 from flask_migrate import Migrate
+from flask_profiler import Profiler
 
 from arcsi.model import db, item, role, show, user
 from arcsi.view.forms.register import ButtRegisterForm
 
 migrate = Migrate()
+profiler = Profiler()
 
 
 def create_app(config_file):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    app.config["DEBUG"] = True
+
+    app.config["flask_profiler"] = {
+        "enabled": app.config["DEBUG"],
+        "storage": {
+            "engine": "sqlalchemy",
+            "endpointRoot": "memprof",
+        },
+        "basicAuth":{
+            "enabled": False,
+        },
+        "ignore": [
+            "^/static/.*",
+        ],
+    }   
+
     
     # set logger and log-handler and log-level so that Gunicorn and Flask share
     guni_logger = logging.getLogger('gunicorn.error')
@@ -37,7 +55,7 @@ def create_app(config_file):
     with app.app_context():
         db.init_app(app)
         migrate.init_app(app, db)
-
+        profiler.init_app(app)
         # create arcsi roles: 
         # `admin` => access to whole service, 
         # `host` => acces to their show, 
