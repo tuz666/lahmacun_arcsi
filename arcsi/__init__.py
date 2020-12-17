@@ -55,7 +55,7 @@ def create_app(config_file):
     with app.app_context():
         db.init_app(app)
         migrate.init_app(app, db)
-        profiler.init_app(app)
+        
         # create arcsi roles: 
         # `admin` => access to whole service, 
         # `host` => acces to their show, 
@@ -71,5 +71,5 @@ def create_app(config_file):
 
     app.register_blueprint(api.arcsi)
     app.register_blueprint(view.router)
-
+    profiler.init_app(app)
     return app
