@@ -1,0 +1,15 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Arcsi API doc",
+      "version": "0.0.1",
+      "title": "Arcsi",
+      "contact": {
+        "email": "it@lahmacun.hu"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    }
+  }
