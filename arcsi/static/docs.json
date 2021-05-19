@@ -1,15 +1,744 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "description": "Arcsi API doc",
-      "version": "0.0.1",
-      "title": "Arcsi",
-      "contact": {
-        "email": "it@lahmacun.hu"
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Arcsi API doc",
+    "version": "0.3.1",
+    "title": "Arcsi",
+    "contact": {
+      "email": "it@lahmacun.hu"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User Request",
+      "description": "API for requesting and return user details"
+    },
+    {
+      "name": "Show Request",
+      "description": "API for requesting and return show details"
+    },
+    {
+      "name": "Item Request",
+      "description": "API for requesting and return item details"
+    }
+  ],
+  "paths": {
+    "/user/all": {
+      "get": {
+        "tags": [
+          "User Request"
+        ],
+        "summary": "Return all users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/userRequests"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the user that we want to match",
+          "schema": {
+            "$ref": "#/components/schemas/id"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "User Request"
+        ],
+        "summary": "Get user with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the user that we want to get",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/userRequest"
+            }
+          },
+          "404": {
+            "description": "Failed. User not found."
+          }
+        }
+      }
+    },
+    "/show/all": {
+      "get": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Return all shows",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/showRequest"
+            }
+          }
+        }
+      }
+    },
+    "/show/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the show that we want to match",
+          "schema": {
+            "$ref": "#/components/schemas/id"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Get show with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the show that we want to get",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/showRequest"
+            }
+          },
+          "404": {
+            "description": "Failed. Show not found."
+          },
+          "500": {
+            "description": "UNHANDLED FROM ARCSI'S SIDE!!"
+          }
+        }
       },
-      "license": {
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
+      "delete": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Delete show with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the show that we want to delete",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Failed. Show not found."
+          },
+          "500": {
+            "description": "UNHANDLED FROM ARCSI'S SIDE!!"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Edit show with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the show that we want to edit",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Invalid data sent to edit show!"
+          }
+        }
+      }
+    },
+    "/show/{slug}/archive": {
+      "parameters": [
+        {
+          "name": "slug",
+          "in": "path",
+          "required": true,
+          "description": "Lahmastore base URL of the Show that we want to match",
+          "schema": {
+            "$ref": "#/components/schemas/url"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Get Show Request with given URL, WE SHOULD USE LAHMASTORE'S URL",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "description": "Item Request URL",
+            "schema": {
+              "$ref": "#/components/schemas/url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/itemRequests"
+            }
+          },
+          "404": {
+            "description": "Failed. Show not found."
+          }
+        }
+      }
+    },
+    "/show/add": {
+      "post": {
+        "tags": [
+          "Show Request"
+        ],
+        "summary": "Add a new Show",
+        "requestBody": {
+          "description": "Show Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/showRequestPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/showRequestPostBody"
+            }
+          },
+          "500": {
+            "description": "Invalid data sent to add show, see:"
+          },
+          "503": {
+            "description": "Only accepts multipart/form-data for now, sorry"
+          }
+        }
+      }
+    },
+    "/item": {
+      "post": {
+        "tags": [
+          "Item Request"
+        ],
+        "summary": "Create a new Item Request system",
+        "requestBody": {
+          "description": "Item Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/itemRequestPostBody"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/itemRequestPostBody"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "500": {
+            "description": "Invalid data sent to add item, see: "
+          },
+          "503": {
+            "description": "Only accepts multipart/form-data for now, sorry"
+          }
+        }
+      }
+    },
+    "/item/all": {
+      "get": {
+        "tags": [
+          "Item Request"
+        ],
+        "summary": "Return all Item Requests",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/itemRequests"
+            }
+          }
+        }
+      }
+    },
+    "/item/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the Item that we want to match",
+          "schema": {
+            "$ref": "#/components/schemas/id"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Item Request"
+        ],
+        "summary": "Get Item Request with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Item Request ID",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/itemRequest"
+            }
+          },
+          "404": {
+            "description": "Failed. Item not found."
+          },
+          "500": {
+            "description": "UNHANDLED FROM ARCSI'S SIDE!!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "id": {
+        "type": "number",
+        "format": "int"
+      },
+      "url": {
+        "type": "string",
+        "format": "url"
+      },
+      "userRequest": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "butt_user": {
+            "type": "string",
+            "format": "string"
+          },
+          "butt_pw": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "string"
+          },
+          "show": {
+            "$ref": "#/components/schemas/showRequests"
+          },
+          "roles": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "userRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "butt_user": {
+            "type": "string",
+            "format": "string"
+          },
+          "butt_pw": {
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "string"
+          },
+          "roles": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "userRequests": {
+        "type": "object",
+        "properties": {
+          "userRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/userRequest"
+            }
+          }
+        }
+      },
+      "showRequest": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "description": {
+            "type": "string",
+            "format": "string"
+          },
+          "language": {
+            "type": "string",
+            "format": "string"
+          },
+          "playlist_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "cover_image_url": {
+            "type": "string",
+            "format": "string"
+          },
+          "frequency": {
+            "type": "number",
+            "format": "int"
+          },
+          "week": {
+            "type": "number",
+            "format": "int"
+          },
+          "day": {
+            "type": "number",
+            "format": "int"
+          },
+          "start": {
+            "type": "string",
+            "format": "time"
+          },
+          "end": {
+            "type": "string",
+            "format": "time"
+          },
+          "archive_lahmastore": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_lahmastore_canonical_url": {
+            "type": "string",
+            "format": "url"
+          },
+          "archive_mixcloud": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_mixcloud_canonical_url": {
+            "type": "string",
+            "format": "url"
+          },
+          "items": {
+            "$ref": "#/components/schemas/itemRequests"
+          },
+          "users": {
+            "$ref": "#/components/schemas/userRequests"
+          }
+        }
+      },
+      "showRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "description": {
+            "type": "string",
+            "format": "string"
+          },
+          "language": {
+            "type": "string",
+            "format": "string"
+          },
+          "playlist_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "frequency": {
+            "type": "number",
+            "format": "int"
+          },
+          "week": {
+            "type": "number",
+            "format": "int"
+          },
+          "day": {
+            "type": "number",
+            "format": "int"
+          },
+          "start": {
+            "type": "string",
+            "format": "time"
+          },
+          "end": {
+            "type": "string",
+            "format": "time"
+          },
+          "archive_lahmastore": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_mixcloud": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "users": {
+            "$ref": "#/components/schemas/userRequest"
+          }
+        }
+      },
+      "showRequests": {
+        "type": "object",
+        "properties": {
+          "showRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/showRequest"
+            }
+          }
+        }
+      },
+      "itemRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "number",
+            "format": "int"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "description": {
+            "type": "string",
+            "format": "string"
+          },
+          "language": {
+            "type": "string",
+            "format": "string"
+          },
+          "play_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "image_url": {
+            "type": "string",
+            "format": "string"
+          },
+          "play_file_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "live": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "broadcast": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "airing": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_lahmastore": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_lahmastore_canonical_url": {
+            "type": "string",
+            "format": "url"
+          },
+          "archive_mixcloud": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_mixcloud_canonical_url": {
+            "type": "string",
+            "format": "url"
+          },
+          "archived": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "download_count": {
+            "type": "number",
+            "format": "int"
+          },
+          "uploader": {
+            "type": "string",
+            "format": "string"
+          },
+          "shows": {
+            "$ref": "#/components/schemas/showRequests"
+          }
+        }
+      },
+      "itemRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "number",
+            "format": "int"
+          },
+          "name": {
+            "type": "string",
+            "format": "string"
+          },
+          "description": {
+            "type": "string",
+            "format": "string"
+          },
+          "language": {
+            "type": "string",
+            "format": "string"
+          },
+          "play_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "live": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "broadcast": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_lahmastore": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "archive_mixcloud": {
+            "type": "boolean",
+            "format": "boolean"
+          },
+          "uploader": {
+            "type": "string",
+            "format": "string"
+          },
+          "shows": {
+            "$ref": "#/components/schemas/showRequest"
+          }
+        }
+      },
+      "itemRequests": {
+        "type": "object",
+        "properties": {
+          "itemRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/itemRequest"
+            }
+          }
+        }
       }
     }
   }
+}

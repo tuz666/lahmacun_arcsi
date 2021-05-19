@@ -38,8 +38,8 @@ many_user_details_schema = UserDetailsSchema(many=True)
 headers = {"Content-Type": "application/json"}
 
 
-@arcsi.route("/users", methods=["GET"])
-@arcsi.route("/users/all", methods=["GET"])
+@arcsi.route("/user", methods=["GET"])
+@arcsi.route("/user/all", methods=["GET"])
 def list_users():
     users = User.query.all()
     return many_user_details_schema.dumps(users)
