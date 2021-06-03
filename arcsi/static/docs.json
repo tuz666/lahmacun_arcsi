@@ -555,12 +555,11 @@
   "components": {
     "schemas": {
       "id": {
-        "type": "number",
-        "format": "int"
+        "type": "integer",
+        "format": "int32"
       },
       "url": {
-        "type": "string",
-        "format": "url"
+        "type": "string"
       },
       "user": {
         "properties": {
@@ -568,12 +567,10 @@
             "$ref": "#/components/schemas/id"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "format": "email"
+            "type": "string"
           }
         }
       },
@@ -583,28 +580,25 @@
             "$ref": "#/components/schemas/id"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           }
         }
       },
       "item": {
         "properties": {
           "id": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "number": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "play_date": {
             "type": "string",
@@ -614,8 +608,7 @@
             "$ref": "#/components/schemas/url"
           },
           "archived": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           }
         }
       },
@@ -626,43 +619,33 @@
             "$ref": "#/components/schemas/id"
           },
           "active": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "butt_user": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "butt_pw": {
             "type": "string",
-            "format": "string"
+            "format": "password"
           },
           "email": {
-            "type": "string",
-            "format": "email"
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "password": {
             "type": "string",
-            "format": "string"
+            "format": "password"
           },
           "shows": {
             "type": "object",
-            "properties": {
-              "show": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/show"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/show"
             }
           },
           "roles": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           }
         }
       },
@@ -673,44 +656,34 @@
             "$ref": "#/components/schemas/id"
           },
           "active": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "butt_user": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "butt_pw": {
             "type": "string",
-            "format": "string"
+            "format": "password"
           },
           "email": {
-            "type": "string",
-            "format": "email"
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "password": {
             "type": "string",
-            "format": "string"
+            "format": "password"
           },
           "roles": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           }
         }
       },
       "UserRequests": {
         "type": "object",
-        "properties": {
-          "UserRequest": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/UserRequest"
-            }
-          }
+        "additionalProperties": {
+          "$ref": "#/components/schemas/UserRequest"
         }
       },
       "ShowRequest": {
@@ -720,82 +693,63 @@
             "$ref": "#/components/schemas/id"
           },
           "active": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "language": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "playlist_name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "cover_image_url": {
             "$ref": "#/components/schemas/url"
           },
           "frequency": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "week": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "day": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "start": {
-            "type": "string",
-            "format": "time"
+            "type": "string"
           },
           "end": {
-            "type": "string",
-            "format": "time"
+            "type": "string"
           },
           "archive_lahmastore": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_lahmastore_base_url": {
             "$ref": "#/components/schemas/url"
           },
           "archive_mixcloud": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_mixcloud_base_url": {
             "$ref": "#/components/schemas/url"
           },
           "items": {
             "type": "object",
-            "properties": {
-              "item": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/item"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/item"
             }
           },
           "users": {
             "type": "object",
-            "properties": {
-              "user": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/user"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/user"
             }
           }
         }
@@ -807,75 +761,56 @@
             "$ref": "#/components/schemas/id"
           },
           "active": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "language": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "playlist_name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "frequency": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "week": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "day": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "start": {
-            "type": "string",
-            "format": "time"
+            "type": "string"
           },
           "end": {
-            "type": "string",
-            "format": "time"
+            "type": "string"
           },
           "archive_lahmastore": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_mixcloud": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "users": {
             "type": "object",
-            "properties": {
-              "user": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/user"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/user"
             }
           }
         }
       },
       "ShowRequests": {
         "type": "object",
-        "properties": {
-          "ShowRequest": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/ShowRequest"
-            }
-          }
+        "additionalProperties": {
+          "$ref": "#/components/schemas/ShowRequest"
         }
       },
       "ItemRequest": {
@@ -885,20 +820,17 @@
             "$ref": "#/components/schemas/id"
           },
           "number": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "language": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "play_date": {
             "type": "string",
@@ -908,56 +840,43 @@
             "$ref": "#/components/schemas/url"
           },
           "play_file_name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "live": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "broadcast": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "airing": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_lahmastore": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_lahmastore_canonical_url": {
             "$ref": "#/components/schemas/url"
           },
           "archive_mixcloud": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_mixcloud_canonical_url": {
             "$ref": "#/components/schemas/url"
           },
           "archived": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "download_count": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "uploader": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "shows": {
             "type": "object",
-            "properties": {
-              "show": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/show"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/show"
             }
           }
         }
@@ -969,54 +888,41 @@
             "$ref": "#/components/schemas/id"
           },
           "number": {
-            "type": "number",
-            "format": "int"
+            "type": "integer",
+            "format": "int32"
           },
           "name": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "language": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "play_date": {
             "type": "string",
             "format": "date"
           },
           "live": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "broadcast": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_lahmastore": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "archive_mixcloud": {
-            "type": "boolean",
-            "format": "boolean"
+            "type": "boolean"
           },
           "uploader": {
-            "type": "string",
-            "format": "string"
+            "type": "string"
           },
           "shows": {
             "type": "object",
-            "properties": {
-              "show": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/components/schemas/show"
-                }
-              }
+            "additionalProperties": {
+              "$ref": "#/components/schemas/show"
             }
           }
         }
