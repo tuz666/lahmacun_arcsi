@@ -306,12 +306,12 @@
         ],
         "summary": "Add a new Item",
         "requestBody": {
-          "description": "Item Request Post Object",
+          "description": "Item Request",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ItemRequestPostBody"
+                "$ref": "#/components/schemas/ItemRequest"
               }
             }
           }
@@ -442,12 +442,12 @@
           }
         ],
         "requestBody": {
-          "description": "Item Request Post Object",
+          "description": "Item Request",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ItemRequestPostBody"
+                "$ref": "#/components/schemas/ItemRequest"
               }
             }
           }
@@ -872,12 +872,6 @@
           },
           "uploader": {
             "type": "string"
-          },
-          "shows": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/show"
-            }
           }
         }
       },
