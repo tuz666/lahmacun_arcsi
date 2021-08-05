@@ -584,16 +584,6 @@
           "name": {
             "type": "string"
           }
-        },
-        "examples": {
-          "show 1": {
-            "id": "1",
-            "name": "show 1 name"
-          },
-          "show 2": {
-            "id": "2",
-            "name": "show 2 name"
-          }
         }
       },
       "item": {
@@ -657,13 +647,7 @@
           "shows": {
             "type": "object",
             "additionalProperties": {
-              "id": {
-                "type": "integer",
-                "format": "int32"
-              },
-              "name": {
-                "type": "string"
-              }
+              "$ref": "#/components/schemas/show"
             }
           }
         },
@@ -841,8 +825,8 @@
           "archive_lahmastore": "true",
           "archive_mixcloud": "true",
           "users": "1",
-          "user_name": "ala lahma",
-          "user_email": "alavela05@gmail.com"
+          "user_name": "example user name",
+          "user_email": "example user email"
         }
       },
       "ItemRequest": {
