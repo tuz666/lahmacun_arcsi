@@ -1,0 +1,73 @@
+name: CI - Integration test
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequantially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        postgres-version: [12]
+        python-version: [3.8]
+        node-version: [14]
+        nginx-version: [1.18]
+
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres-version }}
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        python-version: ${{ matrix.node-version }}
+
+    - name: Install newman
+      run: npm install newman --prefix tests/postman/
+
+    - name: Run the API and Postman's tests
+      run: |
+        flask run & sleep 2
+        cd tests/postman/ && ./node_modules/newman/bin/newman.js run ahm_api_calls.postman_collection.json -e ahm-local.postman_environment.json
+        kill -9 `lsof -i:5000 -t`
+      env:
+        FLASK_ENV: development
+        API_HOST: 0.0.0.0
+        FLASK_APP: run.py
+        DB_NAME: postgres
+        DB_HOST: localhost
+        CI: true
