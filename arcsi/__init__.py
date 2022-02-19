@@ -40,6 +40,10 @@ def create_app(config_file):
         db.init_app(app)
         migrate.init_app(app, db)
 
+        db.drop_all()
+        db.create_all()
+        db.session.commit()
+
     from arcsi import api
     from arcsi import view
 
