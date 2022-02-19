@@ -22,6 +22,13 @@ SECURITY_PASSWORD_SALT = "some_salt"
 # ARCSI CONF
 UPLOAD_FOLDER = "uploads"  # this is where arcsi stores uploadable files temporarily
 ALLOWED_EXTENSIONS = ["mp3", "gif", "jpg", "jpeg", "png"]
+ARCHIVE_REGION = os.getenv("ARCHIVE_REGION")
+ARCHIVE_HOST_BASE_URL = os.getenv("ARCHIVE_HOST_BASE_URL")
+ARCHIVE_ENDPOINT = os.getenv("ARCHIVE_ENDPOINT")
+ARCHIVE_API_KEY = os.getenv("ARCHIVE_API_KEY")
+ARCHIVE_SECRET_KEY = os.getenv("ARCHIVE_SECRET_KEY")
+AZURACAST_BASE_URL = os.getenv("AZURACAST_BASE_URL")
+AZURACAST_API_KEY = os.getenv("AZURACAST_API_KEY")
 
 if os.getenv("APP_ENV") == "development" or os.getenv("APP_ENV") == "production":
     HOST = "web"  # The service name for docker networking
