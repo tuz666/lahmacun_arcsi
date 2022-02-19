@@ -30,5 +30,5 @@ else:
     HOST = "localhost"
     PREFERRED_URL_SCHEME = "http"
 
-PORT = 5666  # The application port nginx proxy is passing to
+PORT = 5000  # The application port nginx proxy is passing to
 APP_BASE_URL = "http://{}:{}".format(HOST, PORT)
