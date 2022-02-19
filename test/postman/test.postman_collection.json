@@ -111,7 +111,7 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/5duAhobafARCQdjqBUgZ8Z.jpg"
+							"src": "testlogo.jpg"
 						}
 					]
 				},
@@ -238,12 +238,12 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/asd/addig-szivjaaad-amig-van-2-gramm-d.mp3"
+							"src": "testaudio.mp3"
 						}
 					]
 				},
@@ -369,12 +369,12 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/asd/addig-szivjaaad-amig-van-2-gramm-d.mp3"
+							"src": "testaudio.mp3"
 						}
 					]
 				},
@@ -502,12 +502,13 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": []
+							"src": [],
+							"disabled": true
 						}
 					]
 				},
@@ -617,12 +618,12 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/asd/addig-szivjaaad-amig-van-2-gramm-d.mp3"
+							"src": "testaudio.mp3"
 						}
 					]
 				},
@@ -755,12 +756,12 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/asd/addig-szivjaaad-amig-van-2-gramm-d.mp3"
+							"src": "testaudio.mp3"
 						}
 					]
 				},
@@ -870,12 +871,12 @@
 						{
 							"key": "image_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/241304675_695675041830501_8268541264226924677_n.jpg"
+							"src": "testlogo.jpg"
 						},
 						{
 							"key": "play_file",
 							"type": "file",
-							"src": "/C:/Users/Endre/Desktop/asd/addig-szivjaaad-amig-van-2-gramm-d.mp3"
+							"src": "testaudio.mp3"
 						}
 					]
 				},
