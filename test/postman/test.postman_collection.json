@@ -1037,7 +1037,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "50"
+							"value": "{{new_item_id}}"
 						}
 					]
 				}
@@ -1208,7 +1208,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "{{new_show_id}}"
 						}
 					]
 				}
