@@ -24,9 +24,9 @@ jobs:
       postgres:
         image: postgres:${{ matrix.postgres-version }}
         env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-          POSTGRES_DB: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: p0stgr3s
+          POSTGRES_DB: arcsi
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
@@ -61,13 +61,19 @@ jobs:
 
     - name: Run the API and Postman's tests
       run: |
-        flask run & sleep 2
-        cd tests/postman/ && ./node_modules/newman/bin/newman.js run ahm_api_calls.postman_collection.json -e ahm-local.postman_environment.json
-        kill -9 `lsof -i:5000 -t`
+        flask run
       env:
+        FLASK_APP: run_ci.py
+        FLASK_DEBUG: 1
         FLASK_ENV: development
+        APP_ENV: development
         API_HOST: 0.0.0.0
-        FLASK_APP: run.py
-        DB_NAME: postgres
-        DB_HOST: localhost
+        UPLOAD_FOLDER: "uploads"
+        ARCHIVE_REGION: ${{ secrets.ARCHIVE_REGION }}
+        ARCHIVE_HOST_BASE_URL: ${{ secrets.ARCHIVE_HOST_BASE_URL }}
+        ARCHIVE_ENDPOINT: ${{ secrets.ARCHIVE_ENDPOINT }}
+        ARCHIVE_API_KEY: ${{ secrets.ARCHIVE_API_KEY }}
+        ARCHIVE_SECRET_KEY: ${{ secrets.ARCHIVE_SECRET_KEY }}
+        AZURACAST_BASE_URL: ${{ secrets.AZURACAST_BASE_URL }}
+        AZURACAST_API_KEY: ${{ secrets.AZURACAST_API_KEY }}
         CI: true
