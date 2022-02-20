@@ -3,6 +3,7 @@ import os
 
 from flask import Flask
 from flask_security import Security, SQLAlchemySessionUserDatastore
+from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_swagger_ui import get_swaggerui_blueprint
 from sqlalchemy.exc import ProgrammingError
@@ -37,9 +38,8 @@ def create_app(config_file):
     security = Security(app, user_store, register_form=ButtRegisterForm)
 
     with app.app_context():
-        db.init_app(app)
-        migrate.init_app(app, db)
-
+        db = SQLAlchemy(app)
+        db.create_all()
         db.session.commit()
 
     from arcsi import api
