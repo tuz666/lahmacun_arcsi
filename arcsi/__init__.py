@@ -32,10 +32,10 @@ def create_app(config_file):
 
     app.config.from_pyfile(config_file)
 
-    user_store = SQLAlchemySessionUserDatastore(db.session, user.User, role.Role)
+    # user_store = SQLAlchemySessionUserDatastore(db.session, user.User, role.Role)
     # TODO w/ user_store can create_role() etc.
     # https://pythonhosted.org/Flask-Security/api.html#flask_security.datastore.SQLAlchemyUserDatastore
-    security = Security(app, user_store, register_form=ButtRegisterForm)
+    # security = Security(app, user_store, register_form=ButtRegisterForm)
 
     with app.app_context():
         db = SQLAlchemy(app)
