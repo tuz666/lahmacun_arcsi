@@ -77,4 +77,7 @@ jobs:
         ARCHIVE_SECRET_KEY: ${{ secrets.ARCHIVE_SECRET_KEY }}
         AZURACAST_BASE_URL: ${{ secrets.AZURACAST_BASE_URL }}
         AZURACAST_API_KEY: ${{ secrets.AZURACAST_API_KEY }}
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: p0stgr3s
+        POSTGRES_DB: arcsi
         CI: true
