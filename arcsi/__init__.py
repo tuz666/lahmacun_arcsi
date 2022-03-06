@@ -38,9 +38,8 @@ def create_app(config_file):
     # security = Security(app, user_store, register_form=ButtRegisterForm)
 
     with app.app_context():
-        db = SQLAlchemy(app)
-        db.create_all()
-        db.session.commit()
+        db.init_app(app)
+        migrate.init_app(app, db)
 
     from arcsi import api
     from arcsi import view
