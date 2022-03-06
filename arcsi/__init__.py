@@ -40,6 +40,7 @@ def create_app(config_file):
     with app.app_context():
         db.init_app(app)
         migrate.init_app(app, db)
+        db.session.commit()
 
         '''
         The application factory runs when `flask db upgrade` is called

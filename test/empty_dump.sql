@@ -22,17 +22,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: alembic_version; Type: TABLE; Schema: public; Owner: postgres
---
-
--- CREATE TABLE public.alembic_version (
---     version_num character varying(32) NOT NULL
--- );
-
-
--- ALTER TABLE public.alembic_version OWNER TO postgres;
-
---
 -- Name: items; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -271,15 +260,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
--- COPY public.alembic_version (version_num) FROM stdin;
--- 76e6fb8087fa
--- \.
-
-
---
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -306,14 +286,6 @@ COPY public.roles_users (user_id, role_id) FROM stdin;
 COPY public.users (id, name, email, butt_user, butt_pw, password, active) FROM stdin;
 1	testuser	testuser@lahmacun.hu	buttuser	buttpw	testpassword	t
 \.
-
-
---
--- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.alembic_version
-    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
 
 
 --
