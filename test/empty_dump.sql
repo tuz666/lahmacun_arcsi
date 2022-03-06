@@ -304,36 +304,8 @@ COPY public.roles_users (user_id, role_id) FROM stdin;
 --
 
 COPY public.users (id, name, email, butt_user, butt_pw, password, active) FROM stdin;
-1	testuser	testuser@lahmacun.hu	buttuser	buttpw	testpassword	t	
+1	testuser	testuser@lahmacun.hu	buttuser	buttpw	testpassword	t
 \.
-
-
---
--- Name: items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.items_id_seq', 765, true);
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.roles_id_seq', 3, true);
-
-
---
--- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.shows_id_seq', 72, true);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
 
 --

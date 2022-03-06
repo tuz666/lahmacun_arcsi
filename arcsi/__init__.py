@@ -32,14 +32,33 @@ def create_app(config_file):
 
     app.config.from_pyfile(config_file)
 
-    # user_store = SQLAlchemySessionUserDatastore(db.session, user.User, role.Role)
+    user_store = SQLAlchemySessionUserDatastore(db.session, user.User, role.Role)
     # TODO w/ user_store can create_role() etc.
     # https://pythonhosted.org/Flask-Security/api.html#flask_security.datastore.SQLAlchemyUserDatastore
-    # security = Security(app, user_store, register_form=ButtRegisterForm)
+    security = Security(app, user_store, register_form=ButtRegisterForm)
 
     with app.app_context():
         db.init_app(app)
         migrate.init_app(app, db)
+
+        '''
+        The application factory runs when `flask db upgrade` is called
+        in entrypoint. At this stage we don't have `roles` relations available.
+        So we let `user_store` fail silently on first try. 
+        This allows the `db upgrade` to set up all relations, which enables
+        us to create these roles once gunicorn starts.
+        '''
+        try:
+            # create arcsi roles: 
+            # `admin` => access to whole service, 
+            # `host` => acces to their show, 
+            # `guest` => acces to their episode
+            user_store.find_or_create_role(name='admin', description='Radio staff')
+            user_store.find_or_create_role(name='host', description='Show host')
+            user_store.find_or_create_role(name='guest', description='Episode guest')
+            db.session.commit()
+        except ProgrammingError as err:
+            pass
 
     from arcsi import api
     from arcsi import view
