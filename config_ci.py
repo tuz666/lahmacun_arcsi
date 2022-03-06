@@ -5,7 +5,7 @@ SECRET_KEY = "yoursecretkeynotinversioncontrol"  # Never share! This is used to 
 
 # DB
 # Set in db.env
-SQLALCHEMY_DATABASE_URI = "postgresql://{}:{}@db/{}".format(
+SQLALCHEMY_DATABASE_URI = "postgresql://{}:{}@localhost:5432/{}".format(
     os.getenv("POSTGRES_USER"), os.getenv("POSTGRES_PASSWORD"), os.getenv("POSTGRES_DB")
 )  # used by Sqlalchemy ORM; can be Mysql, Postgresql, sqlite, mongo etc.
 SQLALCHEMY_TRACK_MODIFICATIONS = (
