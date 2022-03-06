@@ -271,6 +271,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+-- COPY public.alembic_version (version_num) FROM stdin;
+-- 76e6fb8087fa
+-- \.
+
+
+--
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -280,6 +289,51 @@ COPY public.roles (id, name, description) FROM stdin;
 3	guest	Episode guest
 \.
 
+
+--
+-- Data for Name: roles_users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.roles_users (user_id, role_id) FROM stdin;
+1	1
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, butt_user, butt_pw, password, active) FROM stdin;
+1	testuser	testuser@lahmacun.hu	buttuser	buttpw	testpassword	t	
+\.
+
+
+--
+-- Name: items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.items_id_seq', 765, true);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_id_seq', 3, true);
+
+
+--
+-- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.shows_id_seq', 72, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
 
 --
